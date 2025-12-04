@@ -1,0 +1,61 @@
+
+
+.weather-container-5days {
+  background: linear-gradient(180deg, var(--card-bg), var(--card-bg-2));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px) saturate(120%);
+  padding: 18px;
+  border-radius: 12px;
+  margin: 22px 0;
+  box-shadow: var(--shadow);
+}
+
+.weather-container-5days h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.7rem;
+  text-align: center;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.weather-list {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.forecast-day {
+  text-align: center;
+  margin: 0 6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.86));
+  border-radius: 12px;
+  padding: 14px 12px;
+  min-width: 120px;
+  color: var(--text);
+  border: 1px solid rgba(12,30,52,0.04);
+  box-shadow: 0 8px 24px rgba(6,30,55,0.06);
+  text-transform: capitalize;
+}
+
+
+
+.forecast-day .day-name {
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.forecast-day .temp {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-1);
+}
+
+.forecast-day .weather-icon {
+  width: 56px;
+  height: auto;
+  margin: 6px auto 8px;
+}

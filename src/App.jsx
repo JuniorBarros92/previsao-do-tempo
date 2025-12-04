@@ -1,36 +1,69 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import axios from 'axios' 
 import Whaterinformation from './components/whatherinformations/whaterinformation'
+import Whaterinformations5day from './components/Whaterinformations5day/Whaterinformations5day'
 
 import './App.css'
 
-function App() {
- const [weather, setWeather] = useState()
-  const inputRef = useRef()
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
-   async function searchCity() {
+function App() {
+  const [weather, setWeather] = useState()
+  const [weather5days, setWeather5days] = useState()
+  const [loading, setLoading] = useState(false)
+  const [query, setQuery] = useState('')
+
+  async function searchCity() {
+    const city = query.trim()
+    if (!city) return
+
+    setLoading(true)
     try {
-      const city = inputRef.current.value
-      const key = "8023cfe49f474657b5d303db9c21cdaf"
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&lang=pt_br&units=metric`
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=pt_br&units=metric`
+      const url5days = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&lang=pt_br&units=metric`
       
-      const apiInfo = await axios.get(url)
-      console.log("Dados da API:", apiInfo.data) // Log para conferir os dados
+      const [apiInfo, apiInfo5days] = await Promise.all([
+        axios.get(url),
+        axios.get(url5days)
+      ])
+      // debug logs removed before publishing
+      
       setWeather(apiInfo.data)
+      setWeather5days(apiInfo5days.data)
+      setQuery('')
     } catch (error) {
       console.error("Erro ao buscar cidade:", error)
       alert("Cidade não encontrada ou erro na conexão.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      searchCity()
     }
   }
 
   return (
-    <div>
-      
-        <h1>Previsao do tempo</h1>
-        <input ref={inputRef} type="text" placeholder='Digite o nome da cidade'/>
-        <button onClick={searchCity}>Buscar</button>
+    <div className="container">
+      <h1>Previsão do tempo</h1>
+      <div className="search-group">
+        <input 
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          type="text" 
+          placeholder='Digite o nome da cidade'
+          onKeyDown={handleKeyDown}
+        />
+        <button className="primary" onClick={searchCity} disabled={loading}>
+          {loading ? 'Buscando...' : 'Buscar'}
+        </button>
+      </div>
 
-       {weather && <Whaterinformation  weather={weather}/>}
+      {loading && <p className="loading">Carregando...</p>}
+      {weather && <Whaterinformation key={`current-${weather.id || weather.name}`} weather={weather}/>}
+      {weather5days && <Whaterinformations5day key={`forecast-${weather5days.city?.id || weather5days.city?.name}`} weather5days={weather5days}/>}
     </div>
   )
 }

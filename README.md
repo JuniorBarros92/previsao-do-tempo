@@ -1,16 +1,49 @@
-# React + Vite
+# Previsão do Tempo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React + Vite que consome a API do OpenWeather para exibir a previsão do tempo atual e para 5 dias.
 
-Currently, two official plugins are available:
+Principais pontos
+- Tema: interface moderna com estilo "sky blue neo-modern" e glassmorphism.
+- Busca por cidade com resultados atuais e previsões.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Requisitos
+- Node.js (v16+ recomendado)
 
-## React Compiler
+Instalação e execução
+1. Instale dependências:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+2. Crie um arquivo `.env` na raiz (veja `.env.example`) com sua chave da API OpenWeather:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# .env
+VITE_WEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY_HERE
+```
+
+3. Rode em modo desenvolvimento:
+
+```bash
+npm run dev
+```
+
+4. Build de produção:
+
+```bash
+npm run build
+```
+
+Notas de segurança
+- Não comite o arquivo `.env` com chaves reais. Este repositório já contém `.env` no `.gitignore`.
+- Se você acidentalmente comitou uma chave, revogue/rotacione a chave na conta do OpenWeather.
+
+Contribuição
+- Abra issues ou pull requests para melhorias visuais, correções e novas funcionalidades.
+
+Licença
+- Este projeto está licenciado sob MIT. Veja o arquivo `LICENSE`.
+
+Contato
+- Repositório: `https://github.com/JuniorBarros92/previsao-do-tempo`

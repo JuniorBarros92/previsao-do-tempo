@@ -1,17 +1,21 @@
+import './whaterinformation.css'
+import WeatherIcon from '../icons/WeatherIcons.jsx'
+
+
 function Whaterinformation({ weather }) {
   if (!weather.main) {
     return <div></div>
   }
 
     return (
-    <div>
+    <div className='weather-container'>
         <h2>{weather.name}</h2>
-        <div>
-            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}/>
-            <p>{Math.round(weather.main.temp)}ºC</p>
+        <div className='weather-info'>
+          <WeatherIcon type={weather.weather[0].main} size={72} />
+          <p className='temperature'>{Math.round(weather.main.temp)}ºC</p>
         </div>
-        <p>{weather.weather[0].description}</p>
-        <div>
+        <p className='description'>{weather.weather[0].description}</p>
+        <div className='details'>
           <p>Sensação termica: {Math.round(weather.main.feels_like)}ºC</p>
           <p>Umidade: {weather.main.humidity}%</p>
           <p>Pressão: {weather.main.pressure}</p>

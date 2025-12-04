@@ -1,0 +1,130 @@
+.container {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 18px;
+  color: var(--text);
+  text-shadow: 0 6px 18px rgba(46,139,255,0.06);
+}
+
+/* Search input + button as a single pill with neon glow */
+
+.search-group {
+  position: relative;
+  margin: 26px auto 0;
+  width: 100%;
+  max-width: 560px;
+  background: linear-gradient(180deg, var(--card-bg), var(--card-bg-2));
+  border-radius: 30px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* input stays smaller but leaves padding-right for the internal button */
+input {
+  display: block;
+  width: 60%;
+  max-width: 340px;
+  padding: 12px 56px 12px 16px; /* extra right padding for the button inside */
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  border-radius: 26px; /* full pill look */
+}
+
+/* button positioned inside the search-group, aligned to the right */
+button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 14px;
+  border: none;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  height: 36px;
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(46,139,255,0.12);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 26px rgba(46,139,255,0.14);
+}
+
+/* focus state: neon ring when interacting with search */
+.search-group:focus-within {
+  box-shadow: 0 12px 40px rgba(6,30,55,0.12), 0 0 8px rgba(46,139,255,0.06) inset;
+  transform: translateY(-2px);
+}
+
+input::placeholder {
+  color: rgba(4,41,64,0.38);
+}
+
+input:focus {
+  outline: none;
+  caret-color: var(--accent-1);
+}
+
+/* small floating animation for hero title */
+@keyframes float-slow {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+h1 {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* utility glass card for generic use in components */
+.glass-card {
+  background: linear-gradient(180deg, var(--card-bg), var(--card-bg-2));
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px) saturate(120%);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 46px rgba(6,30,55,0.12);
+}
+
+/* subtle pulse for the action button to attract attention */
+@keyframes pulse-glow {
+  0% { box-shadow: 0 6px 18px rgba(46,139,255,0.06); }
+  50% { box-shadow: 0 10px 30px rgba(46,139,255,0.10); }
+  100% { box-shadow: 0 6px 18px rgba(46,139,255,0.06); }
+}
+
+button.primary {
+  animation: pulse-glow 3.8s ease-in-out infinite;
+}
+
+/* small responsiveness */
+@media (max-width: 640px) {
+  h1 { font-size: 2rem; }
+  .search-group { max-width: 100%; padding: 8px; }
+  input { font-size: 0.95rem; }
+}
